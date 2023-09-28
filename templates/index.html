@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loja Application</title>
+</head>
+<body>
+    <h1>Loja Application</h1>
+
+    <!-- Menu -->
+    <div>
+        <button onclick="showCreateForm()">Create Loja</button>
+        <button onclick="showSearchForm()">Search Loja</button>
+    </div>
+
+    <!-- Create Form -->
+    <div id="createForm" style="display: none;">
+        <h2>Create Loja</h2>
+        <form id="store-form">
+            <label for="name">Loja Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <!-- Search Form -->
+    <div id="searchForm" style="display: none;">
+        <h2>Search Loja</h2>
+        <form id="search-form">
+            <label for="search">Loja Name:</label><br>
+            <input type="text" id="search" name="search"><br>
+            <button type="button" onclick="searchLoja()">Search</button>
+        </form>
+        <div id="searchResult"></div>
+    </div>
+
+    <script>
+        function showCreateForm() {
+            document.getElementById('createForm').style.display = 'block';
+            document.getElementById('searchForm').style.display = 'none';
+        }
+        
+        function showSearchForm() {
+            document.getElementById('createForm').style.display = 'none';
+            document.getElementById('searchForm').style.display = 'block';
+        }
+        
+        document.getElementById('store-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            
+            fetch('/loja', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome: name })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+        
+        function searchLoja() {
+            const name = document.getElementById('search').value;
+            
+            fetch(`/loja/${name}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('searchResult').innerText = JSON.stringify(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+        
+    </script>
+</body>
+</html>
