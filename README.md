@@ -1,6 +1,6 @@
-# Loja REST API
+# BD POKEAPI
 
-Este projeto é uma aplicação Flask que expõe uma API REST para operações em "Lojas" e "Itens". Cada "Loja" pode ter vários "Itens".
+Este projeto é uma aplicação Flask que expõe uma API REST para operações de cadastro de consulta da Pokelista MVP
 
 ## Instalação
 
@@ -10,9 +10,14 @@ Este projeto é uma aplicação Flask que expõe uma API REST para operações e
 - Flask-Smorest 0.31.0+
 - SQLAlchemy 1.3.23+
 
+### Instruções DOCKER
+docker build -t mvc_bd . 
+Cadastrar o mesmo nome do docker_compose da aplicação frontend `https://github.com/dreamkatana/mvc_poke_front`.
+
+
 ### Instruções
 
-1. Clone o repositório para sua máquina local usando `[https://github.com/dreamkatana/end/yourrepository.git](https://github.com/dreamkatana/end.git)`.
+1. Clone o repositório para sua máquina local usando `[https://github.com/dreamkatana/mvc_pode_bd2/yourrepository.git](https://github.com/dreamkatana/mvc_pode_bd2.git)`.
 
 2. Navegue até o diretório do projeto: `cd yourrepository`
 
@@ -34,15 +39,24 @@ Este projeto é uma aplicação Flask que expõe uma API REST para operações e
 
 ## Endpoints
 
-- `POST /loja` : Cria uma nova loja.
-    - Exemplo de corpo da requisição: `{ "name": "Loja1" }`
-    
-- `GET /loja/<name>` : Retorna os detalhes de uma loja específica.
-    
-- `POST /item` : Cria um novo item em uma loja.
-    - Exemplo de corpo da requisição: `{ "name": "Item1", "price": 19.99, "store_id": 1 }`
-    
-- `GET /item/<id>` : Retorna os detalhes de um item específico.
+-GET
+/searches/{id}
+
+
+PUT
+/searches/{id}
+
+
+DELETE
+/searches/{id}
+
+
+GET
+/searches
+
+
+POST
+/searches
 
 ## Contribuição
 
